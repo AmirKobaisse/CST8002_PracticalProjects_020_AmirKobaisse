@@ -1,5 +1,6 @@
 from ..business.record import Record  # Ensure to import Record class
 from ..persistence.file_io import FileIO  # Ensure to import FileIO
+from src.controller.sorter import multi_column_sort  # Import the sorting function
 
 class Menu:
     def __init__(self, file_io):
@@ -16,9 +17,10 @@ class Menu:
             print("3. Add a New Record")
             print("4. Update an Existing Record")
             print("5. Save Records to Database")
-            print("6. Exit")
+            print("6. Sort Records")  # New option for sorting
+            print("7. Exit")
             
-            choice = input("Enter your choice (1-6): ")
+            choice = input("Enter your choice (1-7): ")
 
             if choice == "1":
                 self.display_all_records()
@@ -31,6 +33,8 @@ class Menu:
             elif choice == "5":
                 self.save_data()
             elif choice == "6":
+                self.sort_records()  # Call the new sort method
+            elif choice == "7":
                 print("Exiting program.")
                 break
             else:
@@ -122,3 +126,51 @@ class Menu:
         for record in records:
             self.file_io.save_record_to_db(record)
         print("Data saved to the database successfully!")
+
+    # Method for the sorting functionality
+    def sort_records(self):
+        """
+        Prompts the user to choose sorting options and displays sorted records.
+        """
+        # Load records from the database
+        records = self.file_io.load_records_from_db(detailed=False)
+        if not records:
+            print("No records available to sort.")
+            return
+
+        # Get available columns from the first record (assumes all records have the same attributes)
+        available_columns = list(vars(records[0]).keys())
+        print("\nAvailable columns to sort by:")
+        for idx, col in enumerate(available_columns, start=1):
+            print(f"{idx}. {col}")
+
+        # Prompt the user to enter column numbers (comma-separated)
+        user_input = input("Enter the column numbers (comma-separated) to sort by (in order of priority): ")
+        try:
+            selected_indexes = [int(x.strip()) for x in user_input.split(',') if x.strip().isdigit()]
+        except ValueError:
+            print("Invalid input. Please enter numbers only.")
+            return
+
+        sort_columns = []
+        ascending_flags = []
+        for idx in selected_indexes:
+            if idx < 1 or idx > len(available_columns):
+                print(f"Invalid column number: {idx}")
+                continue
+            col_name = available_columns[idx - 1]
+            sort_columns.append(col_name)
+            order_input = input(f"Sort by '{col_name}' ascending (A) or descending (D)? [A/D]: ").strip().lower()
+            ascending_flags.append(order_input == 'a')
+
+        if not sort_columns:
+            print("No valid sorting options selected.")
+            return
+
+        # Sort the records using the multi_column_sort function from the controller
+        sorted_records = multi_column_sort(records, sort_columns, ascending_flags)
+
+        # Display a preview of the sorted records (first 10)
+        print("\n--- Sorted Records Preview ---")
+        for i, record in enumerate(sorted_records[:10], start=1):
+            print(f"Record {i}: {record}")
