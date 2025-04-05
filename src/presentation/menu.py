@@ -2,6 +2,20 @@ from ..business.record import Record  # Ensure to import Record class
 from ..persistence.file_io import FileIO  # Ensure to import FileIO
 from src.controller.sorter import multi_column_sort  # Import the sorting function
 
+"""
+
+Author: Amir kobaisse
+
+Due Date: April 6, 2025
+
+Professor: Stanley Pieda
+
+Course: CST8002
+
+Assessment: Practical Project 04
+
+"""
+
 class Menu:
     def __init__(self, file_io):
         self.file_io = file_io  # Instance of FileIO to handle file operations

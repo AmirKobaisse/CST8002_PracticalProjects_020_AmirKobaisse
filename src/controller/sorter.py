@@ -1,4 +1,3 @@
-# src/controller/sorter.py
 """
 
 Author: Amir kobaisse
@@ -12,6 +11,7 @@ Course: CST8002
 Assessment: Practical Project 04
 
 """
+# src/controller/sorter.py
 
 def multi_column_sort(records, sort_columns, ascending_flags):
     """

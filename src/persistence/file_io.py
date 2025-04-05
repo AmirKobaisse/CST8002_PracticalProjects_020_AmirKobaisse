@@ -1,6 +1,20 @@
 from .database_handler import DatabaseHandler
 from ..business.record import Record  # Import the Record class directly
 
+"""
+
+Author: Amir kobaisse
+
+Due Date: April 6, 2025
+
+Professor: Stanley Pieda
+
+Course: CST8002
+
+Assessment: Practical Project 04
+
+"""
+
 class FileIO:
     """
     Handles database input and output operations, including reading from and writing to the MySQL database.

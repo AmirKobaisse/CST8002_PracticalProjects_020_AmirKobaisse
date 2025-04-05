@@ -1,5 +1,19 @@
 import uuid
 
+"""
+
+Author: Amir kobaisse
+
+Due Date: April 6, 2025
+
+Professor: Stanley Pieda
+
+Course: CST8002
+
+Assessment: Practical Project 04
+
+"""
+
 class Record:
     """
 

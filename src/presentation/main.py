@@ -3,6 +3,20 @@ from src.persistence.file_io import FileIO  # Import FileIO for DB interaction
 from src.business.record import Record  # Assuming you still have the Record class
 from src.presentation.menu import Menu
 
+"""
+
+Author: Amir kobaisse
+
+Due Date: April 6, 2025
+
+Professor: Stanley Pieda
+
+Course: CST8002
+
+Assessment: Practical Project 04
+
+"""
+
 def main():
     """
     Main function to handle program execution.
