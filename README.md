@@ -19,3 +19,6 @@ A terminal-based Python application that lets users add, view, edit, sort, and s
 1. Clone the repo
 2. Navigate: cd CST8002_PracticalProject_020_AmirKobaisse  
 3. Run the app: python -m src.presentation.main
+
+Author
+Amir Kobaisse
