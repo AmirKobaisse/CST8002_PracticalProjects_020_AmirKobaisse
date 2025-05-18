@@ -20,5 +20,5 @@ A terminal-based Python application that lets users add, view, edit, sort, and s
 2. Navigate: cd CST8002_PracticalProject_020_AmirKobaisse  
 3. Run the app: python -m src.presentation.main
 
-Author
+## Author
 Amir Kobaisse
